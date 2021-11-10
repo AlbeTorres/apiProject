@@ -114,6 +114,29 @@ app.route("/tasks/:tittle")
                     }
 
                 });
+        })
+
+        .patch(function(req,res){
+            Task.updateOne({tittle: req.params.tittle},
+                            {$set:req.body},
+                            function(err){
+                                if(!err){
+                                    res.send("succefully update");
+                                }else{
+                                    res.send(err);
+                                }
+                            });
+        })
+
+        .delete(function(req,res){
+            Task.deleteOne({tittle: req.params.tittle},
+                            function(err){
+                                if(!err){
+                                    res.send("Sucefully deleted that shit that you love so much, whatever");
+                                }else{
+                                    res.send(err);
+                                }
+                            });
         });
 
 
